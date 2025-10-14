@@ -8,4 +8,5 @@ return [
         'en' => 'English',
         'de' => 'Deutsch',
     ],
+    'debug_mode' => true,
 ];

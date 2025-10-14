@@ -17,6 +17,12 @@ function getLocaleName($localeShort, $config)
     return $config['locales_map'][$localeShort] ?? $localeShort;
 }
 
+function revertBool($value)
+{
+    return !$value;
+}
+
+$debug_mode = $config['debug_mode'] ?? false;
 ?>
 
 <!DOCTYPE html>
@@ -50,3 +56,7 @@ function getLocaleName($localeShort, $config)
     </main>
 </body>
 </html>
+
+
+
+<pre><?php print_r($translations, revertBool($debug_mode)); ?></pre>
