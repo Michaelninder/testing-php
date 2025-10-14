@@ -25,15 +25,19 @@ function getLocaleName($localeShort, $config)
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= translate('page_title', $translations) ?></title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1><?= translate('welcome_message', $translations) ?></h1>
+    <header>
+        <h1><?= translate('welcome_message', $translations) ?></h1>
+    </header>
 
     <nav>
         <ul>
             <?php foreach ($config['available_locales'] as $availableLocale): ?>
                 <li>
-                    <a href="?lang=<?= $availableLocale ?>">
+                    <a href="?lang=<?= $availableLocale ?>"
+                       class="<?= $locale === $availableLocale ? 'active' : '' ?>">
                         <?= getLocaleName($availableLocale, $config) ?>
                     </a>
                 </li>
@@ -41,7 +45,8 @@ function getLocaleName($localeShort, $config)
         </ul>
     </nav>
 
-
-    <h3><?= translate('greeting', $translations) ?></h3>
+    <main>
+        <h3><?= translate('greeting', $translations) ?></h3>
+    </main>
 </body>
 </html>
