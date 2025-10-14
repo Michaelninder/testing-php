@@ -53,3 +53,13 @@ main {
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
+
+pre {
+    color: #f4f4f4;
+    background-color: #000000;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    overflow-x: auto;
+    margin-inline: 20px;
+}

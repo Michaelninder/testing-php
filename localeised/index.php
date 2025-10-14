@@ -60,3 +60,4 @@ $debug_mode = $config['debug_mode'] ?? false;
 
 
 <pre><?php print_r($translations, revertBool($debug_mode)); ?></pre>
+<pre><?php print_r($config, revertBool($debug_mode)); ?></pre>
