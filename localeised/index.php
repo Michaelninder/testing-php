@@ -23,6 +23,20 @@ function revertBool($value)
 }
 
 $debug_mode = $config['debug_mode'] ?? false;
+
+function generateRoute($route)
+{
+    $config = include __DIR__ . '/config.php';
+    $locale = $_GET['lang'] ?? $config['default_locale'];
+    
+    if ($locale === $config['default_locale']) {
+        $asdf = '';
+    } else {
+        $asdf = "?lang={$locale}";
+    }
+    
+    return $route . $asdf;
+}
 ?>
 
 <!DOCTYPE html>
