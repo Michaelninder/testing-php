@@ -5,6 +5,10 @@ $config = include __DIR__ . '/config.php';
 
 $locale = $_GET['lang'] ?? $config['default_locale'];
 
+if (!in_array($locale, $config['available_locales'], true)) {
+    $locale = $config['default_locale'];
+}
+
 $translations = include __DIR__ . "/lang/{$locale}.php";
 
 function translate($key, $translations)
@@ -47,6 +51,11 @@ function generateRoute($route, $config, $params = [])
     }
 
     return $url;
+}
+function config($key, $default = null)
+{
+    global $config;
+    return $config[$key] ?? $default;
 }
 ?>
 
