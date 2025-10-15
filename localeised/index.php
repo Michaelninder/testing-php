@@ -24,18 +24,29 @@ function revertBool($value)
 
 $debug_mode = $config['debug_mode'] ?? false;
 
-function generateRoute($route)
+function generateRoute($route, $config, $params = [])
 {
-    $config = include __DIR__ . '/config.php';
-    $locale = $_GET['lang'] ?? $config['default_locale'];
-    
-    if ($locale === $config['default_locale']) {
-        $asdf = '';
-    } else {
-        $asdf = "?lang={$locale}";
+    global $locale;
+
+    if (!isset($params['lang'])) {
+        if ($locale !== $config['default_locale']) {
+            $params['lang'] = $locale;
+        }
+    } /*else {
+        if ($params['lang'] === $config['default_locale']) {
+            unset($params['lang']);
+        }
+    }*/
+
+    $queryString = http_build_query($params);
+
+    $url = $route;
+    if ($queryString) {
+        $separator = strpos($url, '?') === false ? '?' : '&';
+        $url .= $separator . $queryString;
     }
-    
-    return $route . $asdf;
+
+    return $url;
 }
 ?>
 
@@ -56,7 +67,7 @@ function generateRoute($route)
         <ul>
             <?php foreach ($config['available_locales'] as $availableLocale): ?>
                 <li>
-                    <a href="?lang=<?= $availableLocale ?>"
+                    <a href="<?= generateRoute('', $config, ['lang' => $availableLocale]) ?>"
                        class="<?= $locale === $availableLocale ? 'active' : '' ?>">
                         <?= getLocaleName($availableLocale, $config) ?>
                     </a>
