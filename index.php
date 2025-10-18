@@ -28,7 +28,7 @@ function config($key, $default = null)
     return $config[$key] ?? $default;
 }
 
-fucntion returnViewByRouteName($name)
+function returnViewByRouteName($name)
 {
     $route = getRouteByName($name);
     if ($route) {
